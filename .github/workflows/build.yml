@@ -30,9 +30,4 @@ jobs:
         run: ${{ matrix.package-manager }} install
 
       - name: Build/release Electron app
-        uses: "@electron-forge/action-build@v2"
-        with:
-          package-manager: ${{ matrix.package-manager }}
-          make-targets: "zip"
-          publish: true
-          publish-token: ${{ secrets.GITHUB_TOKEN }}
+        uses: electron-forge/bundle-action@v1

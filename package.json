@@ -1,6 +1,6 @@
 {
   "name": "photon",
-  "productName": "Hypar Photon",
+  "productName": "Photon",
   "version": "0.1.0",
   "description": "Photon is a desktop application for creating light installations, shows and interactive experiences.",
   "main": ".webpack/main",
@@ -15,6 +15,9 @@
   "author": {
     "name": "Joris Lodewijks",
     "email": "info@jorislodewijks.nl"
+  },
+  "build": {
+    "appId": "nl.hyparcollective.${name}"
   },
   "license": "MIT",
   "devDependencies": {

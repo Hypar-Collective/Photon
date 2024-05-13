@@ -30,4 +30,4 @@ jobs:
         run: ${{ matrix.package-manager }} install
 
       - name: Build/release Electron app
-        uses: electron-forge/bundle-action
+        uses: electron-forge/bundle-action@main

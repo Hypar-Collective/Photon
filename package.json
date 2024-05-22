@@ -22,7 +22,7 @@
   },
   "license": "MIT",
   "config": {
-    "forge": "./forge.config.ts"
+    "forge": "forge.config.ts"
   },
   "lint-staged": {
     "*.ts": [
@@ -57,6 +57,7 @@
     "eslint": "^8.0.1",
     "eslint-plugin-import": "^2.25.0",
     "fork-ts-checker-webpack-plugin": "^7.2.13",
+    "husky": "^9.0.11",
     "lint-staged": "^15.2.2",
     "node-loader": "^2.0.0",
     "postcss": "^8.4.35",

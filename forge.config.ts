@@ -1,7 +1,7 @@
 import type { ForgeConfig } from "@electron-forge/shared-types";
 import { MakerSquirrel } from "@electron-forge/maker-squirrel";
 import { MakerZIP } from "@electron-forge/maker-zip";
-import { MakerDeb } from "@electron-forge/maker-deb";
+import { MakerDeb, MakerDebConfig } from "@electron-forge/maker-deb";
 import { MakerRpm } from "@electron-forge/maker-rpm";
 import { PublisherGithub } from "@electron-forge/publisher-github";
 import { AutoUnpackNativesPlugin } from "@electron-forge/plugin-auto-unpack-natives";
@@ -12,24 +12,25 @@ import { rendererConfig } from "./webpack.renderer.config";
 
 const config: ForgeConfig = {
   packagerConfig: {
+    executableName: "photon",
     asar: true,
   },
   rebuildConfig: {},
   makers: [
-    new MakerSquirrel({}, ["win32"]),
+    new MakerSquirrel({}),
     new MakerZIP({}, ["darwin"]),
     new MakerRpm({}),
-    new MakerDeb({}),
+    new MakerDeb({executableName: "photon"} as MakerDebConfig),
   ],
-  // publishers: [
-  //   new PublisherGithub({
-  //     repository: {
-  //       owner: "hypar-collective",
-  //       name: "photon",
-  //     },
-  //     prerelease: true,
-  //   }),
-  // ],
+  publishers: [
+    new PublisherGithub({
+      repository: {
+        owner: "hypar-collective",
+        name: "photon",
+      },
+      prerelease: true,
+    }),
+  ],
   plugins: [
     new AutoUnpackNativesPlugin({}),
     new WebpackPlugin({

@@ -3,32 +3,18 @@ on:
   [push, pull_request]
 
 jobs:
-  build_on_linux:
-    runs-on: ubuntu-latest
+  build:
+    name: Build
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        package_manager: [npm]
+        node_version: [20.x]
+    runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: 20.x
-      - run: npm install
-      - run: npm run make
-
-  build_on_windows:
-    runs-on: windows-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 20.x
-      - run: npm install
-      - run: npm run make
-
-  build_on_mac:
-    runs-on: macos-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 20.x
-      - run: npm install
-      - run: npm run make
+          node-version: ${{ matrix.node_version }}
+      - run: ${{ matrix.package_manager }} install
+      - run: ${{ matrix.package_manager }} run make

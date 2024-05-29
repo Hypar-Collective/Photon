@@ -21,9 +21,6 @@
     "appId": "nl.hyparcollective.${name}"
   },
   "license": "MIT",
-  "config": {
-    "forge": "forge.config.ts"
-  },
   "lint-staged": {
     "*.ts": [
       "eslint --fix",
